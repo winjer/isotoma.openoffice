@@ -1,7 +1,7 @@
 0.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Compatible with lucid version of unoconv
 
 
 0.0.4 (2012-05-24)
