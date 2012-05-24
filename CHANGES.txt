@@ -1,7 +1,7 @@
 0.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Move uno import to safer location
 
 
 0.0.2 (2012-05-24)

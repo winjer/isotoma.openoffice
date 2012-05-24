@@ -1,6 +1,5 @@
 
 import os
-import uno
 import subprocess
 import time
 import logging
@@ -21,6 +20,9 @@ class Office(object):
 
     def __init__(self, name="isotoma.openoffice"):
         """ The name is used to uniquely identify this instance """
+	# plone barfs if uno is imported earlier
+	# see https://bugs.launchpad.net/zope-cmf/+bug/600259
+	import uno
         self.name = name
         self.subprocess = None
         self.run_openoffice()
