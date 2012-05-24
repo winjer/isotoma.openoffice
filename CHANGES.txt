@@ -1,4 +1,4 @@
-0.0.4 (unreleased)
+0.0.4 (2012-05-24)
 ------------------
 
 - python2.6 compatibility improvement
