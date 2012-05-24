@@ -8,21 +8,21 @@ from which import which
 logger = logging.getLogger("isotoma.openoffice")
 
 class Office(object):
-    
+
     """ Launch an openoffice background process and use it. Will reconnect to
     an existing process if necessary. NB: you will leave an openoffice
     process lying around after this terminates! """
 
-    server_args = ['--norestore',
-                   '--nofirstwizard',
-                   '--nologo',
-                   '--headless']
+    server_args = ['-norestore',
+                   '-nofirstwizard',
+                   '-nologo',
+                   '-headless']
 
     def __init__(self, name="isotoma.openoffice"):
         """ The name is used to uniquely identify this instance """
-	# plone barfs if uno is imported earlier
-	# see https://bugs.launchpad.net/zope-cmf/+bug/600259
-	import uno
+        # plone barfs if uno is imported earlier
+        # see https://bugs.launchpad.net/zope-cmf/+bug/600259
+        import uno
         self.name = name
         self.subprocess = None
         self.run_openoffice()
@@ -37,14 +37,14 @@ class Office(object):
     @property  
     def pipe_name(self):
         return "pipe,name=%s;urp;" % (self.name,)
-            
+
     def run_openoffice(self):
         """ Launches openoffice and returns the name of the connection string to it """
-        command = [self.office_path, "--accept=%s" % self.pipe_name] + self.server_args
+        command = [self.office_path, "-accept=%s" % self.pipe_name] + self.server_args
         self.subprocess = subprocess.Popen(command, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         time.sleep(1)
         self.subprocess.poll()
-        
+
     def load(self, path):
         return self.desktop.loadComponentFromURL("file://" + path, "_blank", 0, ())
 

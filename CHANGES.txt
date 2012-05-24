@@ -1,7 +1,7 @@
 0.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Compatible with lucid version of soffice
 
 
 0.0.5 (2012-05-24)
