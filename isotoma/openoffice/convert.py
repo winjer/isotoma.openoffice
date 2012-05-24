@@ -29,8 +29,7 @@ def convert(document, format="pdf", port_range=(23400,23600), tries=3):
     for t in range(tries):
         # multiple tries, because we might collide on the port
         try:
-            output = subprocess.check_output([unoconv, '--timeout=30', '-f', format, '-o', tempdir, infilename])
-            logger.info(output)
+            subprocess.check_call([unoconv, '--timeout=30', '-f', format, '-o', tempdir, infilename])
             break
         except subprocess.CalledProcessError, e:
             logger.exception(e)
