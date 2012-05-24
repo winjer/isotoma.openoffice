@@ -10,6 +10,9 @@ from which import which
 
 logger = logging.getLogger("isotoma.openoffice")
 
+class ConvertError(Exception):
+    """ Conversion failed for some reason """
+
 def convert(document, format="pdf", port_range=(23400,23600), tries=3):
     """ Convert the document into the specified format. A random port is
     chosen from the provided port range. Returns a string containing the
@@ -32,7 +35,7 @@ def convert(document, format="pdf", port_range=(23400,23600), tries=3):
         except subprocess.CalledProcessError, e:
             logger.exception(e)
     else:
-        raise IOError("unoconv failed too many times, see log for details")
+        raise ConvertError("unoconv failed too many times, see log for details")
     data = open(outfilename).read()
     os.unlink(infilename)
     os.unlink(outfilename)
