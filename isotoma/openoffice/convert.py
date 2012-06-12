@@ -34,9 +34,16 @@ def convert(document, format="pdf", port_range=(23400,23600), tries=3):
         except subprocess.CalledProcessError, e:
             logger.exception(e)
     else:
+        os.unlink(infilename)
+        os.rmdir(tempdir)
         raise ConvertError("unoconv failed too many times, see log for details")
-    data = open(outfilename).read()
-    os.unlink(infilename)
-    os.unlink(outfilename)
-    os.rmdir(tempdir)
-    return data
+    if os.path.exists(outfilename):
+        data = open(outfilename).read()
+        os.unlink(outfilename)
+        os.unlink(infilename)
+        os.rmdir(tempdir)
+        return data
+    else:
+        os.unlink(infilename)
+        os.rmdir(tempdir)
+        raise ConvertError("format could not be converted by open office")

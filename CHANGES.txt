@@ -1,7 +1,7 @@
 0.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle failures better
 
 
 0.0.6 (2012-05-24)
